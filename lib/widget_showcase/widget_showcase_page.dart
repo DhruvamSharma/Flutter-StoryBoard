@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:storyboard/utils/colors.dart';
-import 'package:storyboard/utils/list_item_widget.dart';
+import 'package:storyboard/themes.dart';
 import 'package:storyboard/widget_library/common_utitlities/common_colors.dart';
 import 'package:storyboard/widget_library/widget_list_data.dart';
+import 'package:storyboard/widget_showcase/bottom_sheet_bloc.dart';
+import 'package:storyboard/widget_showcase/storyboard_bottom_sheet.dart';
 
 class WidgetShowcasePage extends StatefulWidget {
   final String sublistKey;
@@ -22,7 +23,9 @@ class _WidgetShowcasePageState extends State<WidgetShowcasePage> {
   List<Widget> listOfWidgetInCurrentLibrary = List();
   List<String> listOfNamesOfWidgetInCurrentLibrary = List();
 
-  bool isExpanded = false;
+  ThemeData _theme;
+  bool isDarkTheme = false;
+
   double normalWidgetListHeight = 90;
   double expandedWidgetListHeight = 300;
 
@@ -31,15 +34,29 @@ class _WidgetShowcasePageState extends State<WidgetShowcasePage> {
     super.initState();
     currentIndex = 0;
 
+    _theme = StoryBoardThemes.lightTheme;
+
 //     Calculating names of widget in the library
-    WidgetStateMapData.getWidgetTitle(widget.widgetLibraryTitle, widget.sublistKey)
+    WidgetStateMapData.getWidgetTitle(
+            widget.widgetLibraryTitle, widget.sublistKey)
         .forEach((it) {
       listOfNamesOfWidgetInCurrentLibrary.add(it);
     });
 
     // Calculating the widgets in the library
-    WidgetStateMapData.getWidgets(widget.widgetLibraryTitle, widget.sublistKey).forEach((it) {
+    WidgetStateMapData.getWidgets(widget.widgetLibraryTitle, widget.sublistKey)
+        .forEach((it) {
       listOfWidgetInCurrentLibrary.add(it);
+    });
+  }
+
+  void _changeTheme(StoryboardThemeKeys themeKey) {
+    setState(() {
+      if (themeKey == StoryboardThemeKeys.DARK) {
+        _theme = StoryBoardThemes.lightTheme;
+      } else {
+        _theme = StoryBoardThemes.darkTheme;
+      }
     });
   }
 
@@ -58,101 +75,70 @@ class _WidgetShowcasePageState extends State<WidgetShowcasePage> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              setState(() {});
+              _changeTheme(StoryboardThemeKeys.LIGHT);
             },
             icon: Icon(Icons.refresh),
           ),
         ],
       ),
-      bottomSheet: BottomSheet(
-        backgroundColor: primaryColor,
-        onClosing: () {},
-        enableDrag: true,
-        elevation: 8,
-        builder: (context) {
-          return SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16, left: 24),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: ListTile(
-                        onTap: () {
-                          setState(() {
-                            isExpanded = !isExpanded;
-                          });
-                        },
-                        contentPadding: EdgeInsets.all(0),
-                        title: Text(
-                          'Widget Gallery',
-                          style: Theme.of(context).textTheme.headline,
-                        ),
-                        trailing: IconButton(
-                            icon: Icon(isExpanded
-                                ? Icons.arrow_downward
-                                : Icons.arrow_upward),
-                            onPressed: () {
-                              setState(() {
-                                isExpanded = !isExpanded;
-                              });
-                            }),
-                      ),
-                    ),
-                    AnimatedContainer(
-                      padding: EdgeInsets.only(bottom: 0),
-                      duration: Duration(milliseconds: 50),
-                      height: isExpanded
-                          ? (30.0 *
-                                  listOfNamesOfWidgetInCurrentLibrary.length) +
-                              40
-                          : 0,
-                      constraints: BoxConstraints(
-                        maxHeight: 400,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-
-                          ...listOfNamesOfWidgetInCurrentLibrary.map((it) {
-                            return Expanded(
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    currentIndex = listOfNamesOfWidgetInCurrentLibrary.indexOf(it);
-                                  });
-                                },
-                                child: ListItemWidget(
-                                    it),
-                              ),
-                            );
-                          }),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
+      bottomSheet: StoryBoardBottomSheet(
+        listOfNamesOfWidgetInCurrentLibrary:
+            listOfNamesOfWidgetInCurrentLibrary,
+        listOfWidgetInCurrentLibrary: listOfWidgetInCurrentLibrary,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(18.0),
             child: Container(
-              padding: EdgeInsets.all(8.0),
               color: CommonColors.lightColor,
               height: MediaQuery.of(context).size.height,
               child: Center(
                 child: listOfWidgetInCurrentLibrary.isEmpty
                     ? Container()
-                    : listOfWidgetInCurrentLibrary[currentIndex],
+                    : MaterialApp(
+                        theme: _theme,
+                        debugShowCheckedModeBanner: false,
+                        home: Scaffold(
+                          body: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Switch(
+                                  activeTrackColor: Colors.white,
+                                  activeColor: Colors.white,
+                                  value: isDarkTheme,
+                                  onChanged: (newValue) {
+                                    if (isDarkTheme) {
+                                      _changeTheme(StoryboardThemeKeys.DARK);
+                                    } else {
+                                      _changeTheme(StoryboardThemeKeys.LIGHT);
+                                    }
+                                    setState(() {
+                                      isDarkTheme = !isDarkTheme;
+                                    });
+                                  },
+                                ),
+                              ),
+                              StreamBuilder<int>(
+                                stream: bloc.selectedWidgetIndexStream,
+                                initialData: 0,
+                                builder: (context, futureData) {
+                                  currentIndex = futureData.data;
+                                  return Center(
+                                    child: AnimatedSwitcher(
+                                      duration: Duration(milliseconds: 300),
+                                      child: listOfWidgetInCurrentLibrary[
+                                          currentIndex],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
               ),
             ),
           ),

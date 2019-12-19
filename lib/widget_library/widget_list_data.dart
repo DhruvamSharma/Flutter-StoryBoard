@@ -86,7 +86,7 @@ class WidgetStateMapData {
   }
 
   static Map<String, Widget> appBarMap = {
-    "App bar actions with cash":  Container(),
+    "App bar actions with cash":  Text('Theme Setter',),
   "App bar actions with Trophy": Container(),
   "New Badge": Container(),
     "Tournament Trophy": Container(),
