@@ -8,6 +8,7 @@ class WidgetListData {
   static Map<String, Map<String, Map<String, Widget>>> widgetListMap = {
     "App Bar": WidgetSublistMapData.appbarWidgetsMap,
     "Home Page": WidgetSublistMapData.homePageWidgetsMap,
+    "Profile Page": WidgetSublistMapData.profilePageWidgetsMap,
     "References and Styles": WidgetSublistMapData.referencesWidgetsMap
   };
 
@@ -37,16 +38,25 @@ class WidgetSublistMapData {
   }
 
   static Map<String, Map<String, Widget>> appbarWidgetsMap = {
-    "App bar actions with cash": WidgetStateMapData.appBarMap,
-    "App bar actions with Trophy": WidgetStateMapData.appBarMap,
-    "New Badge": WidgetStateMapData.appBarMap,
-    "Tournament Trophy": WidgetStateMapData.appBarMap,
+    "App bar with Title": WidgetStateMapData.appBarMap,
+    "App bar without Title": WidgetStateMapData.appBarMap,
+    "App bar with Actionse": WidgetStateMapData.appBarMap,
+    "App bar without Actions": WidgetStateMapData.appBarMap,
     "App bar": WidgetStateMapData.appBarMap,
   };
 
   static Map<String, Map<String, Widget>> homePageWidgetsMap = {
     "Home Page's App Bar": WidgetStateMapData.homePageMap,
     "Side Menu": WidgetStateMapData.homePageMap,
+    "Bottom Navigation": WidgetStateMapData.homePageMap,
+    "Helper Toolbox": WidgetStateMapData.homePageMap,
+    "Custom Divider": WidgetStateMapData.homePageMap,
+    "Shimmer Layout": WidgetStateMapData.homePageMap,
+  };
+
+  static Map<String, Map<String, Widget>> profilePageWidgetsMap = {
+    "Profile Page's App Bar": WidgetStateMapData.homePageMap,
+    "Side Menu": WidgetStateMapData.sideMenuMap,
     "Bottom Navigation": WidgetStateMapData.homePageMap,
     "Helper Toolbox": WidgetStateMapData.homePageMap,
     "Custom Divider": WidgetStateMapData.homePageMap,
@@ -88,23 +98,13 @@ class WidgetStateMapData {
   }
 
   static Map<String, Widget> appBarMap = {
-    "App bar actions with cash": Text(
+    "App Bar Title": Text(
       'Theme Setter',
     ),
-    "App bar actions with Trophy": Container(),
-    "New Badge": Container(),
-    "Tournament Trophy": Container(),
+    "App bar Style": Container(),
     "App bar": Container(),
-  };
-
-  static Map<String, Widget> simcardMap = {
-    "Sim Card state 1": Container(),
-    "Sim Card state 2": Container(),
-    "Sim Card state 3": Container(),
-  };
-
-  static Map<String, Widget> tournamentDetailsMap = {
-    "Prize By Rank Card": Container(),
+    "App Status Bar": Container(),
+    "App bar": Container(),
   };
 
   static Map<String, Widget> sideMenuMap = {
@@ -118,25 +118,6 @@ class WidgetStateMapData {
     "Home Page State 2": Container(),
     "Home Page State 3": Container(),
     "Home Page State 4": Container(),
-  };
-
-  static Map<String, Widget> tournamentAndBattlesPageMap = {
-    "App Bar": Container(),
-    "Helper Toolbox": Container(),
-    "Header": Container(),
-    "Player and Time Listing": Container(),
-    "Card Heading": Container(),
-    "Entry Prize Component": Container(),
-    "Battle Info": Container(),
-    "Battle Info Full": Container(),
-    "Battle Info Registered": Container(),
-    "Battle Component": Container(),
-    "Special Tournament": Container(),
-    "Tournament Component": Container(),
-    "Create Tournament Card": Container(),
-    "Follow Card": Container(),
-    "Follow Card List": Container(),
-    "Tournament And Battles Page": Container(),
   };
 
   static Map<String, Widget> blueStylesAndReferencesMap = {

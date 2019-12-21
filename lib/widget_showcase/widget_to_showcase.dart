@@ -63,27 +63,29 @@ class _WidgetToShowcaseState extends State<WidgetToShowcase> {
             ),
             Expanded(
               child: StreamBuilder<int>(
-                stream: bloc.selectedWidgetIndexStream,
-                initialData: currentIndex,
-                builder: (context, futureData) {
-                  if (futureData.hasData) {
-                    return Center(
-                      child: AnimatedSwitcher(
-                        duration: Duration(milliseconds: 300),
-                        child:
-                        widget.listOfWidgetInCurrentLibrary[futureData.data],
-                      ),
-                    );
-                  } else {
-                    return Center(
-                      child: AnimatedSwitcher(
-                        duration: Duration(milliseconds: 300),
-                        child: Text('error'),
-                      ),
-                    );
-                  }
-                }
-              ),
+                  stream: bloc.selectedWidgetIndexStream,
+                  initialData: currentIndex,
+                  builder: (context, futureData) {
+                    if (futureData.hasData) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: AnimatedSwitcher(
+                            duration: Duration(milliseconds: 300),
+                            child: widget
+                                .listOfWidgetInCurrentLibrary[futureData.data],
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Center(
+                        child: AnimatedSwitcher(
+                          duration: Duration(milliseconds: 300),
+                          child: Text('error'),
+                        ),
+                      );
+                    }
+                  }),
             ),
           ],
         ),

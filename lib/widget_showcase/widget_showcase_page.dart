@@ -24,7 +24,7 @@ class _WidgetShowcasePageState extends State<WidgetShowcasePage> {
   List<String> listOfNamesOfWidgetInCurrentLibrary = List();
 
   double normalWidgetListHeight = 90;
-  double expandedWidgetListHeight = 300;
+  double expandedWidgetListHeight = 250;
 
   @override
   void initState() {
@@ -92,6 +92,4 @@ class _WidgetShowcasePageState extends State<WidgetShowcasePage> {
       ),
     );
   }
-
-
 }

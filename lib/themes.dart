@@ -5,7 +5,6 @@ import 'utils/colors.dart';
 enum StoryboardThemeKeys { LIGHT, DARK }
 
 class StoryBoardThemes {
-  
   static final ThemeData lightTheme = ThemeData(
     primarySwatch: Colors.purple,
     brightness: Brightness.light,
