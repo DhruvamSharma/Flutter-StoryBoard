@@ -1,16 +1,21 @@
-# storyboard
+# Flutter Storyboard
 
-A  Storyboard for Flutter just like a React app.
+A Flutter based application to showcase your custom widgets in your app that helps in easy review of the design.  
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+Use this link to install web version of the Flutter Storyboard [Web](https://flutter.dev/docs/get-started/web)
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+pip install foobar
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<img src="https://github.com/DhruvamSharma/Flutter-StoryBoard/blob/master/github_assets/final_storyboard_gif.gif" height = 500 width = 300>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[BSD 2-Clause "Simplified" License](https://github.com/DhruvamSharma/Flutter-StoryBoard/blob/master/LICENSE)
