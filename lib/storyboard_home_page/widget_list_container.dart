@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:storyboard/utils/colors.dart';
 import 'package:storyboard/utils/list_item_widget.dart';
-import 'package:storyboard/home_page/widget_library_sublist.dart';
+import './widget_library_sublist.dart';
 import 'package:storyboard/widget_library/widget_list_data.dart';
-import 'package:storyboard/widget_showcase/widget_showcase_page.dart';
 
 class WidgetListContainer extends StatefulWidget {
   final String widgetLibraryTitle;

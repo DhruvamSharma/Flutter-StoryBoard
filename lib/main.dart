@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:storyboard/utils/colors.dart';
-import './home_page/home_page.dart';
+
+import 'storyboard_home_page/home_page.dart';
 
 void main() {
   runApp(MyApp());

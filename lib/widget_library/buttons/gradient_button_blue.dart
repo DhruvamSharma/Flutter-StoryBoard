@@ -29,6 +29,7 @@ class GradientButtonBlue extends StatelessWidget {
       ),
       child: MaterialButton(
         onPressed: onTapGradientButton,
+        disabledColor: Colors.grey,
         child: Text(
           buttonText,
           style: CommonTextStyles.getBoldTextStyleLight(context)

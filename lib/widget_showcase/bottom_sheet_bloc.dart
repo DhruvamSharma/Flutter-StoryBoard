@@ -1,11 +1,12 @@
 import 'package:rxdart/rxdart.dart';
 
-class _Bloc {
+class Bloc {
 
   Stream<int> get selectedWidgetIndexStream => _selectedWidgetIndexStreamController.stream;
-  final _selectedWidgetIndexStreamController = BehaviorSubject<int>();
+  final _selectedWidgetIndexStreamController = PublishSubject<int>();
 
   void updateIndex(int newIndex) {
+    print('in bloc $newIndex');
     _selectedWidgetIndexStreamController.sink.add(newIndex);
   }
 
@@ -15,4 +16,4 @@ class _Bloc {
 
 }
 
-final bloc = _Bloc();
+final bloc = Bloc();
