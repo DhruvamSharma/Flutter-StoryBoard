@@ -4,7 +4,12 @@ import 'buttons/gradient_button_blue.dart';
 import 'buttons/green_gradient_button.dart';
 import 'typography/typhography.dart';
 
+/// This map stores the name of the heading widgets
 class WidgetListData {
+  /// This map stores the main headlines of the widget.
+  /// Like in our case it is the name of the screens
+  /// And basic Utilities in a name-value pair fashion.
+
   static Map<String, Map<String, Map<String, Widget>>> widgetListMap = {
     "App Bar": WidgetSublistMapData.appbarWidgetsMap,
     "Home Page": WidgetSublistMapData.homePageWidgetsMap,
@@ -23,28 +28,20 @@ class WidgetListData {
   }
 }
 
+
+
+
+
+
+
+/// This map stores the Widgets
 class WidgetSublistMapData {
-  static Map<String, Widget> getSublistMapFromKey(
-      String widgetLibraryKey, String widgetSublistKey) {
-    Map<String, Map<String, Widget>> sublistMapToSearch =
-        WidgetListData.getMapFromKey(widgetLibraryKey);
-    Map<String, Widget> mapToReturn;
-    sublistMapToSearch.forEach(((k, map) {
-      if (k == widgetSublistKey) {
-        mapToReturn = map;
-      }
-    }));
-    return mapToReturn;
-  }
 
-  static Map<String, Map<String, Widget>> appbarWidgetsMap = {
-    "App bar with Title": WidgetStateMapData.appBarMap,
-    "App bar without Title": WidgetStateMapData.appBarMap,
-    "App bar with Actionse": WidgetStateMapData.appBarMap,
-    "App bar without Actions": WidgetStateMapData.appBarMap,
-    "App bar": WidgetStateMapData.appBarMap,
-  };
 
+  /// This map stores the Widgets that makes up a screen.
+  /// Like Home Page will consist of an Appbar,
+  /// Side-menu, Bottom navigation, Some dividers
+  /// And much more, all that is necessary.
   static Map<String, Map<String, Widget>> homePageWidgetsMap = {
     "Home Page's App Bar": WidgetStateMapData.homePageMap,
     "Side Menu": WidgetStateMapData.homePageMap,
@@ -52,6 +49,14 @@ class WidgetSublistMapData {
     "Helper Toolbox": WidgetStateMapData.homePageMap,
     "Custom Divider": WidgetStateMapData.homePageMap,
     "Shimmer Layout": WidgetStateMapData.homePageMap,
+  };
+
+  static Map<String, Map<String, Widget>> appbarWidgetsMap = {
+    "App bar with Title": WidgetStateMapData.appBarMap,
+    "App bar without Title": WidgetStateMapData.appBarMap,
+    "App bar with Actionse": WidgetStateMapData.appBarMap,
+    "App bar without Actions": WidgetStateMapData.appBarMap,
+    "App bar": WidgetStateMapData.appBarMap,
   };
 
   static Map<String, Map<String, Widget>> profilePageWidgetsMap = {
@@ -70,33 +75,32 @@ class WidgetSublistMapData {
     "Outlined Button": WidgetStateMapData.outlinedButtonStylesAndReferenceMap,
     "Typography": WidgetStateMapData.typographyStylesAndReferenceMap,
   };
+
+  static Map<String, Widget> getSublistMapFromKey(
+      String widgetLibraryKey, String widgetSublistKey) {
+    Map<String, Map<String, Widget>> sublistMapToSearch =
+    WidgetListData.getMapFromKey(widgetLibraryKey);
+    Map<String, Widget> mapToReturn;
+    sublistMapToSearch.forEach(((k, map) {
+      if (k == widgetSublistKey) {
+        mapToReturn = map;
+      }
+    }));
+    return mapToReturn;
+  }
 }
 
+
+
+
+
+
+/// This map stores the states of Widgets
 class WidgetStateMapData {
-  static List<String> getWidgetTitle(String key, String widgetSublistKey) {
-    List<String> widgetNameList = List();
-    Map<String, Widget> map =
-        WidgetSublistMapData.getSublistMapFromKey(key, widgetSublistKey);
-    if (map != null) {
-      map.forEach((k, v) {
-        widgetNameList.add(k);
-      });
-    }
-    return widgetNameList;
-  }
 
-  static List<Widget> getWidgets(String key, String widgetSublistKey) {
-    List<Widget> widgetsList = List();
-    Map<String, Widget> map =
-        WidgetSublistMapData.getSublistMapFromKey(key, widgetSublistKey);
-    if (map != null) {
-      map.forEach((k, v) {
-        widgetsList.add(v);
-      });
-    }
-    return widgetsList;
-  }
-
+  /// This map stores the states of a widget.
+  /// Like an app bar can contain a back arrow or not,
+  /// Or some actions in the right-end.
   static Map<String, Widget> appBarMap = {
     "App Bar Title": Text(
       'Theme Setter',
@@ -205,5 +209,29 @@ class WidgetStateMapData {
   static Map<String, Widget> typographyStylesAndReferenceMap = {
     "Typhography": TypographyDemo(),
   };
+
+  static List<String> getWidgetTitle(String key, String widgetSublistKey) {
+    List<String> widgetNameList = List();
+    Map<String, Widget> map =
+    WidgetSublistMapData.getSublistMapFromKey(key, widgetSublistKey);
+    if (map != null) {
+      map.forEach((k, v) {
+        widgetNameList.add(k);
+      });
+    }
+    return widgetNameList;
+  }
+
+  static List<Widget> getWidgets(String key, String widgetSublistKey) {
+    List<Widget> widgetsList = List();
+    Map<String, Widget> map =
+    WidgetSublistMapData.getSublistMapFromKey(key, widgetSublistKey);
+    if (map != null) {
+      map.forEach((k, v) {
+        widgetsList.add(v);
+      });
+    }
+    return widgetsList;
+  }
 
 }
