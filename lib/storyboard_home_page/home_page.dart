@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:storyboard/article_page/article_page.dart';
+import 'package:storyboard/web_only_article_page/article_page.dart';
 import 'package:storyboard/storyboard_home_page/widget_list_container.dart';
 import 'package:storyboard/widget_library/widget_list_data.dart';
 

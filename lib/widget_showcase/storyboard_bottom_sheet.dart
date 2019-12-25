@@ -45,7 +45,7 @@ class _StoryBoardBottomSheetState extends State<StoryBoardBottomSheet> {
                       },
                       contentPadding: EdgeInsets.all(0),
                       title: Text(
-                        'Widget Gallery',
+                        'Widget States',
                         style: Theme.of(context).textTheme.headline,
                       ),
                       trailing: IconButton(

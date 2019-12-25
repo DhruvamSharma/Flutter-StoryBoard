@@ -6,7 +6,6 @@ class Bloc {
   final _selectedWidgetIndexStreamController = PublishSubject<int>();
 
   void updateIndex(int newIndex) {
-    print('in bloc $newIndex');
     _selectedWidgetIndexStreamController.sink.add(newIndex);
   }
 

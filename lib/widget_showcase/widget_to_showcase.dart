@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../themes.dart';
+import '../widget_library/themes.dart';
 import 'bottom_sheet_bloc.dart';
 
 class WidgetToShowcase extends StatefulWidget {
