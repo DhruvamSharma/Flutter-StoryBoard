@@ -40,6 +40,11 @@ You will see this project structure where you will mostly not be concerend with 
 <img src ="https://imgur.com/PXoPJ7S.png">
 
 You will place your widgets in the **Widget Library** directory. After placing all of your widgets there, in whatever order you wish, you have to edit the **widget_list_data.dart** file when you are done creating the Widgets you want in your app.
+
+Add your desired theme inside **themes.dart** and View how your widget are aware to your theme.
+
+<img src="https://imgur.com/fVA9R9d.png" height=400 width=250 > <img src="https://imgur.com/44HsUD8.png" height=400 width=250 >
+
   
 
 ## Resources
