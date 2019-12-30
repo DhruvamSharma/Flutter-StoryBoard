@@ -49,7 +49,7 @@ Add your desired theme inside **themes.dart** and View how your widget are aware
 
 ## Resources
 Understand the working of Flutter Storyboard through the Medium article and try the app on the playstore. Just download and see the magic 🤗
-1. Medium: <ARTICLE LINK>
+1. Medium: https://bit.ly/storyboard-article
 2. Playstore: https://bit.ly/storyboard-app
 3. Web: https://bit.ly/flutterboard
 
